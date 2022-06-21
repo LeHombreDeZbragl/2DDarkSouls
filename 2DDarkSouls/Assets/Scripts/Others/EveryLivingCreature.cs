@@ -18,7 +18,7 @@ public class EveryLivingCreature : MonoBehaviour
         enemyMovement = gameObject.GetComponent<EnemyMovement>();
         if (gameObject.CompareTag("Player"))
         {
-            health = 20;
+            health = 2000;
         }
         else if (gameObject.CompareTag("Enemies"))
         {

@@ -38,12 +38,12 @@ public class EnemyMovement : MonoBehaviour
 
         playerPos = player.transform;
         rb.drag = 10f;
-        speed = 1200;
+        speed = 1000;
 
         vision = false;
 
-        cockyDistance = 8;
-        panickDistance = 6;
+        cockyDistance = 10;
+        panickDistance = 5;
 
         TypeOfWeapon();
     }
@@ -98,23 +98,23 @@ public class EnemyMovement : MonoBehaviour
             {
                 cockyDistance = 2.5f;
                 panickDistance = 2f;
-                speed = 3000f;
+                speed = 2500f;
             }
             else if (rapier)
             {
                 cockyDistance = 3.2f;
                 panickDistance = 2.7f;
-                speed = 2600f;
+                speed = 2500f;
             }
             else if (cleaver)
             {
-                speed = 3400;
+                speed = 4000;
                 cockyDistance = 1.5f;
-                panickDistance = 1f;
+                panickDistance = 0.5f;
             }
             else if (sword)
             {
-                speed = 2800;
+                speed = 3000;
                 cockyDistance = 2.5f;
                 panickDistance = 2f;
             }
@@ -123,8 +123,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Dashing()
     {
-        transform.position = playerPos.position + transform.position / 15;
-        weaponBehaviour.charging = weaponBehaviour.startCharging/2;
+        transform.position = playerPos.position + transform.position /30;
+        weaponBehaviour.charging = weaponBehaviour.startCharging/3;
     }
 
     private void Moving()

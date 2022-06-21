@@ -8,8 +8,10 @@ public class WeaponSystem : MonoBehaviour
 
     private GameObject primaryWeapon;
     private GameObject secondaryWeapon;
+    private GameObject tertiaryWeapon;
 
-    float reload;
+    float reloadS;
+    float reloadT;
     float originalReload;
 
     internal bool again;
@@ -17,48 +19,49 @@ public class WeaponSystem : MonoBehaviour
 
     private void Start()
     {
-        reload = 0f;
+        reloadS = 0f;
+        reloadT = 0f;
         originalReload = 1f;
 
         primaryWeapon = transform.Find("PrimaryWeapon").gameObject;
         secondaryWeapon = transform.Find("SecondaryWeapon").gameObject;
-
-        WeaponsDown();
+        tertiaryWeapon = transform.Find("TertiaryWeapon").gameObject;
+        WeaponsDownS();
+        WeaponsDownT();
     }
 
     private void Update()
     {
-        UsingWeapon();
+        UsingSWeapon();
+    }
+    private void UsingSWeapon()
+    {
+        reloadS -= Time.deltaTime;
+
+        if (inputManager.usingSWeapon == true && reloadS <= 0)
+        {
+            reloadS = originalReload;
+
+            fire = true;
+            primaryWeapon.SetActive(false);
+            secondaryWeapon.SetActive(true);
+
+            Invoke("WeaponsDownS", 0.5f);
+
+            return;
+        }        
     }
 
-    private void UsingWeapon()
+    private void WeaponsDownS()
     {
         fire = false;
-
-        if (inputManager.usingSWeapon == true)
-        {
-            if (again || reload <= 0)
-            {
-                again = false;
-
-                reload = originalReload;
-
-                fire = true;
-                primaryWeapon.SetActive(false);
-                secondaryWeapon.SetActive(true);
-
-                Invoke("WeaponsDown", 0.5f);
-            }
-        }
-        reload -= Time.deltaTime;
-
-        inputManager.usingWeapon = false;
-        inputManager.usingSWeapon = false;
-    }
-
-    private void WeaponsDown()
-    {
         primaryWeapon.SetActive(true);
         secondaryWeapon.SetActive(false);
+    }
+
+    private void WeaponsDownT()
+    {
+        primaryWeapon.SetActive(true);
+        tertiaryWeapon.SetActive(false);
     }
 }

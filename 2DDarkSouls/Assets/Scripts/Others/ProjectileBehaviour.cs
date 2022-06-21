@@ -89,7 +89,7 @@ public class ProjectileBehaviour : MonoBehaviour
         {
             if (guidedMissile)
             {
-                rb.AddForce((follow.position - transform.position).normalized * speed * Time.deltaTime);
+                rb.AddForce((follow.position - transform.position).normalized * speed * Time.deltaTime);                
             }
         }
         else
@@ -145,9 +145,9 @@ public class ProjectileBehaviour : MonoBehaviour
         }
         else if (gameObject.name == "ThiccBullet(Clone)")
         {
-            recoilPower = 7f;
+            recoilPower = 50f;
             speed = 22f;
-            damage = 3;
+            damage = 4;
         }
         else if (gameObject.name == "SmallBullet(Clone)")
         {
@@ -157,10 +157,10 @@ public class ProjectileBehaviour : MonoBehaviour
         }
         else if (gameObject.name == "Rocket(Clone)")
         {
-            rb.drag = 3f;
+            rb.drag = 2f;
             recoilPower = 3f;
             speed = 3000f;
-            lifeTime = 8f;
+            lifeTime = 40f;
             damage = 4;
             guidedMissile = true;
             follow = player.transform;
@@ -198,10 +198,6 @@ public class ProjectileBehaviour : MonoBehaviour
             {
                 rb.AddForce(-transform.right.normalized * speed, ForceMode2D.Impulse);
             }
-            else
-            {
-                rb.AddForce(-transform.right.normalized * speed/200, ForceMode2D.Impulse);
-            }
         }
     }
 
@@ -209,7 +205,7 @@ public class ProjectileBehaviour : MonoBehaviour
     {
         float power;
         if (player)
-            power = 0.5f;
+            power = 5f;
         else
             power = 5f;
         other.GetComponent<Rigidbody2D>().AddForce((other.gameObject.transform.position - transform.position).normalized * recoilPower * power, ForceMode2D.Impulse);

@@ -212,6 +212,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1008492601896552394, guid: eddb1ecda4d8e5944bce9c484695973b,
+        type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 2014357390}
     - target: {fileID: 2840009751552546567, guid: eddb1ecda4d8e5944bce9c484695973b,
         type: 3}
       propertyPath: m_IsActive
@@ -317,6 +322,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 5621220485498962272, guid: eddb1ecda4d8e5944bce9c484695973b,
+        type: 3}
+      propertyPath: m_Name
+      value: TertiaryWeapon
+      objectReference: {fileID: 0}
     - target: {fileID: 5929263105207330453, guid: eddb1ecda4d8e5944bce9c484695973b,
         type: 3}
       propertyPath: m_IsActive
@@ -421,6 +431,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2447201995852524062, guid: b7c8c469beca0674eb55fa2b11d83710, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b7c8c469beca0674eb55fa2b11d83710, type: 3}
+--- !u!4 &2014357390 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2930035622633060656, guid: eddb1ecda4d8e5944bce9c484695973b,
+    type: 3}
+  m_PrefabInstance: {fileID: 74136545}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5408731624651109544
 PrefabInstance:
   m_ObjectHideFlags: 0

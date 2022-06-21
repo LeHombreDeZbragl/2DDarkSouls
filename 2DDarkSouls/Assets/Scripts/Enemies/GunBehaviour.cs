@@ -47,7 +47,7 @@ public class GunBehaviour : MonoBehaviour
             startingRealoadTime = 6f;
             bullet = rocket;
         }
-        randomizedTime = Random.Range(0, startingRealoadTime/5);
+        randomizedTime = Random.Range(0, startingRealoadTime);
         reloadTime = randomizedTime;
         firePosition = transform.Find("ShotPoint");
         exclamationMarkPosition = gameObject.transform.parent.parent.transform;

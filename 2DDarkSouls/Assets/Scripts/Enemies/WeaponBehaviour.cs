@@ -21,6 +21,7 @@ public class WeaponBehaviour : MonoBehaviour
     private float parryTime = 0f;
 
     internal bool ForB = true;
+    internal bool rot = false;
     private bool attacking = false;
     private float attackDelay;
     private int damage;
@@ -91,7 +92,7 @@ public class WeaponBehaviour : MonoBehaviour
     {
         if (transform.name == "Cleaver")
         {
-            weaponLength = 3f;
+            weaponLength = 2f;
             startCharging = 1f;
             damage = 3;
             pushingPower = 10f;
@@ -101,6 +102,7 @@ public class WeaponBehaviour : MonoBehaviour
             weaponLength = 4f;
             startCharging = 2f;
             damage = 3;
+            rot = true;
             pushingPower = 30f;
         }
         else if (transform.name == "Sword")
@@ -160,18 +162,25 @@ public class WeaponBehaviour : MonoBehaviour
         if (fB)
         {
             animator.ChangeAnimState("EnemyWeaponAnimFB");
+            attackDelay = 0.5f;
+        }
+        else if (rot)
+        {
+            animator.ChangeAnimState("EnemyWeaponAnimRot");
+            attackDelay = 1.2f;
         }
         else if (ForB)
         {
             animator.ChangeAnimState("EnemyWeaponAnimF");
             ForB = !ForB;
+            attackDelay = 0.5f;
         }
         else
         {
             animator.ChangeAnimState("EnemyWeaponAnimB");
             ForB = !ForB;
+            attackDelay = 0.5f;
         }
-        attackDelay = animator.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
         Invoke("AttackComplete", attackDelay);
     }
 

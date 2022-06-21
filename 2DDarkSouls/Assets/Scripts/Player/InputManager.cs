@@ -4,32 +4,34 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    InputMaster input;
-
     internal Vector2 movement;
     internal Vector2 rotation;
-    internal bool usingSWeapon;
     internal bool usingWeapon;
+    internal bool usingSWeapon;
+    internal bool usingTWeapon;
     internal bool dashEnabled;
-
-    private void Awake()
-    {
-        input = new InputMaster();
-    }
 
     void Update()
     {
-        input.Gameplay.Movement.performed += ctx => movement = ctx.ReadValue<Vector2>();
+        movement = new Vector2(Input.GetAxis("Horizontal") , Input.GetAxis("Vertical"));
 
-        input.Gameplay.Rotation.performed += ctx => rotation = ctx.ReadValue<Vector2>();
+        rotation = new Vector2(Input.GetAxis("Horizontal2"), Input.GetAxis("Vertical2"));
 
-        input.Gameplay.Dash.performed += ctx => dashEnabled = true;
+        if(rotation == Vector2.zero)
+        {
+            Vector2 mousePos = Input.mousePosition;
+            rotation = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
+        }
 
-        input.Gameplay.PrimaryWeapon.performed += ctx => usingWeapon = true;
+        
 
-        input.Gameplay.SecondaryWeapon.performed += ctx => usingSWeapon = true;
+        dashEnabled = Input.GetAxis("Jump") > 0;
 
-        CheckIfSmall();
+        usingSWeapon = Input.GetAxis("Fire2") > 0;
+
+        usingTWeapon = Input.GetAxis("Fire1") > 0;
+
+        //CheckIfSmall();
     }
 
     private void CheckIfSmall()
@@ -42,14 +44,5 @@ public class InputManager : MonoBehaviour
         {
             rotation = Vector2.zero;
         }
-    }
-
-    private void OnEnable()
-    {
-        input.Gameplay.Enable();
-    }
-    private void OnDisable()
-    {
-        input.Gameplay.Disable();
     }
 }

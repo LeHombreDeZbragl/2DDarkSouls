@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     internal Rigidbody2D rb;
     [SerializeField] private GameObject dashEffect;
 
-    float runSpeed = 3000f;
+    float runSpeed = 3200f;
     float speed;
 
     float dashSpeed = 50000;

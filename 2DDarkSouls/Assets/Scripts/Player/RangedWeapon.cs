@@ -5,8 +5,7 @@ using UnityEngine;
 public class RangedWeapon : MonoBehaviour
 {
     float reload;
-    float originalReload;
-    bool justOnce = true;
+    float originalReload;    
 
     private WeaponSystem wSystem;
     private InputManager input;
@@ -28,7 +27,7 @@ public class RangedWeapon : MonoBehaviour
         if (transform.name == "WhatIsThis")
         {
             bullet = whatIsThisBullet;
-            originalReload = 0.2499f;
+            originalReload = 0.4f;
         }
         else if (transform.name == "Submachine")
         {
@@ -46,42 +45,34 @@ public class RangedWeapon : MonoBehaviour
     {
         if (wSystem.fire)
         {
-            justOnce = true;
-            reload = 0f;
-            Invoke("JustOnce", 0.5f);
+            Debug.Log("FIREE");
+            reload = 0.5f;
         }
-
-        if (justOnce)
+        if (reload >= 0)
         {
-            if (reload <= 0)
+            if (transform.name == "Shotgun")
             {
-                if (transform.name == "Shotgun")
-                {
-                    for (int i = 0; i < 18; i++)
-                    {
-                        Fire();
-                    }
-                }
-                else
+                for (int i = 0; i < 18; i++)
                 {
                     Fire();
                 }
-                reload = originalReload;
+                wSystem.fire = false;
             }
             else
             {
-                reload -= Time.deltaTime;
+                Fire();
+                wSystem.fire = false;
             }
+            reload -= originalReload;
+        }
+        else
+        {
+            reload = -1;
         }
     }
 
     private void Fire()
     {
         Instantiate(bullet, firePosition.position, transform.rotation).transform.SetParent(transform);
-    }
-
-    private void JustOnce()
-    {
-        justOnce = false;
     }
 }

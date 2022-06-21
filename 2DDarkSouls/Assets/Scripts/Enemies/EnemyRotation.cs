@@ -24,7 +24,7 @@ public class EnemyRotation : MonoBehaviour
             RotateToPlayer();
         }
     }
-
+    
     private void RotateToPlayer()
     {
         rotation = playerPos.position - transform.position;
@@ -37,6 +37,7 @@ public class EnemyRotation : MonoBehaviour
                 angle -= 90;
             }
         }
+
         transform.rotation = Quaternion.AngleAxis(angle + 90, Vector3.back);
     }
 }
